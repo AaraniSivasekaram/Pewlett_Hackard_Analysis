@@ -17,13 +17,13 @@ SELECT DISTINCT ON (r.emp_no) r.emp_no,
 r.first_name, 
 r.last_name, 
 r.title
-INTO distinct_retirement_titles
+INTO unique_titles
 FROM retirement_titles as r
 ORDER BY r.emp_no, to_date DESC;
 
 -- Employee count by most recent job title
 SELECT COUNT(dr.title), dr.title
 INTO retiring_titles
-FROM distinct_retirement_titles as dr
+FROM unique_titles as dr
 GROUP BY dr.title
 ORDER BY COUNT(dr.title) DESC;
